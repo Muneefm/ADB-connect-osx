@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F10802C2238ECB1500EF67E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802C1238ECB1500EF67E1 /* AppDelegate.swift */; };
+		F10802C4238ECB1500EF67E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802C3238ECB1500EF67E1 /* ContentView.swift */; };
+		F10802C7238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F10802C5238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld */; };
+		F10802C9238ECB1600EF67E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10802C8238ECB1600EF67E1 /* Assets.xcassets */; };
+		F10802CC238ECB1600EF67E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10802CB238ECB1600EF67E1 /* Preview Assets.xcassets */; };
+		F10802CF238ECB1600EF67E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10802CD238ECB1600EF67E1 /* Main.storyboard */; };
+		F10802DB238ECB1600EF67E1 /* AndroidDevicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802DA238ECB1600EF67E1 /* AndroidDevicesTests.swift */; };
+		F10802E6238ECB1600EF67E1 /* AndroidDevicesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F10802D7238ECB1600EF67E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F10802B6238ECB1500EF67E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F10802BD238ECB1500EF67E1;
+			remoteInfo = AndroidDevices;
+		};
+		F10802E2238ECB1600EF67E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F10802B6238ECB1500EF67E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F10802BD238ECB1500EF67E1;
+			remoteInfo = AndroidDevices;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F10802BE238ECB1500EF67E1 /* AndroidDevices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AndroidDevices.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10802C1238ECB1500EF67E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F10802C3238ECB1500EF67E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F10802C6238ECB1500EF67E1 /* AndroidDevices.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AndroidDevices.xcdatamodel; sourceTree = "<group>"; };
+		F10802C8238ECB1600EF67E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F10802CB238ECB1600EF67E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F10802CE238ECB1600EF67E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F10802D0238ECB1600EF67E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10802D1238ECB1600EF67E1 /* AndroidDevices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AndroidDevices.entitlements; sourceTree = "<group>"; };
+		F10802D6238ECB1600EF67E1 /* AndroidDevicesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AndroidDevicesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10802DA238ECB1600EF67E1 /* AndroidDevicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidDevicesTests.swift; sourceTree = "<group>"; };
+		F10802DC238ECB1600EF67E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10802E1238ECB1600EF67E1 /* AndroidDevicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AndroidDevicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidDevicesUITests.swift; sourceTree = "<group>"; };
+		F10802E7238ECB1600EF67E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F10802BB238ECB1500EF67E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F10802D3238ECB1600EF67E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F10802DE238ECB1600EF67E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F10802B5238ECB1500EF67E1 = {
+			isa = PBXGroup;
+			children = (
+				F10802C0238ECB1500EF67E1 /* AndroidDevices */,
+				F10802D9238ECB1600EF67E1 /* AndroidDevicesTests */,
+				F10802E4238ECB1600EF67E1 /* AndroidDevicesUITests */,
+				F10802BF238ECB1500EF67E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F10802BF238ECB1500EF67E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F10802BE238ECB1500EF67E1 /* AndroidDevices.app */,
+				F10802D6238ECB1600EF67E1 /* AndroidDevicesTests.xctest */,
+				F10802E1238ECB1600EF67E1 /* AndroidDevicesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F10802C0238ECB1500EF67E1 /* AndroidDevices */ = {
+			isa = PBXGroup;
+			children = (
+				F10802C1238ECB1500EF67E1 /* AppDelegate.swift */,
+				F10802C3238ECB1500EF67E1 /* ContentView.swift */,
+				F10802C8238ECB1600EF67E1 /* Assets.xcassets */,
+				F10802CD238ECB1600EF67E1 /* Main.storyboard */,
+				F10802D0238ECB1600EF67E1 /* Info.plist */,
+				F10802D1238ECB1600EF67E1 /* AndroidDevices.entitlements */,
+				F10802C5238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld */,
+				F10802CA238ECB1600EF67E1 /* Preview Content */,
+			);
+			path = AndroidDevices;
+			sourceTree = "<group>";
+		};
+		F10802CA238ECB1600EF67E1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F10802CB238ECB1600EF67E1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F10802D9238ECB1600EF67E1 /* AndroidDevicesTests */ = {
+			isa = PBXGroup;
+			children = (
+				F10802DA238ECB1600EF67E1 /* AndroidDevicesTests.swift */,
+				F10802DC238ECB1600EF67E1 /* Info.plist */,
+			);
+			path = AndroidDevicesTests;
+			sourceTree = "<group>";
+		};
+		F10802E4238ECB1600EF67E1 /* AndroidDevicesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */,
+				F10802E7238ECB1600EF67E1 /* Info.plist */,
+			);
+			path = AndroidDevicesUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F10802BD238ECB1500EF67E1 /* AndroidDevices */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10802EA238ECB1600EF67E1 /* Build configuration list for PBXNativeTarget "AndroidDevices" */;
+			buildPhases = (
+				F10802BA238ECB1500EF67E1 /* Sources */,
+				F10802BB238ECB1500EF67E1 /* Frameworks */,
+				F10802BC238ECB1500EF67E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AndroidDevices;
+			productName = AndroidDevices;
+			productReference = F10802BE238ECB1500EF67E1 /* AndroidDevices.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F10802D5238ECB1600EF67E1 /* AndroidDevicesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10802ED238ECB1600EF67E1 /* Build configuration list for PBXNativeTarget "AndroidDevicesTests" */;
+			buildPhases = (
+				F10802D2238ECB1600EF67E1 /* Sources */,
+				F10802D3238ECB1600EF67E1 /* Frameworks */,
+				F10802D4238ECB1600EF67E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F10802D8238ECB1600EF67E1 /* PBXTargetDependency */,
+			);
+			name = AndroidDevicesTests;
+			productName = AndroidDevicesTests;
+			productReference = F10802D6238ECB1600EF67E1 /* AndroidDevicesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F10802E0238ECB1600EF67E1 /* AndroidDevicesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10802F0238ECB1600EF67E1 /* Build configuration list for PBXNativeTarget "AndroidDevicesUITests" */;
+			buildPhases = (
+				F10802DD238ECB1600EF67E1 /* Sources */,
+				F10802DE238ECB1600EF67E1 /* Frameworks */,
+				F10802DF238ECB1600EF67E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F10802E3238ECB1600EF67E1 /* PBXTargetDependency */,
+			);
+			name = AndroidDevicesUITests;
+			productName = AndroidDevicesUITests;
+			productReference = F10802E1238ECB1600EF67E1 /* AndroidDevicesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F10802B6238ECB1500EF67E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Muneef M";
+				TargetAttributes = {
+					F10802BD238ECB1500EF67E1 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					F10802D5238ECB1600EF67E1 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = F10802BD238ECB1500EF67E1;
+					};
+					F10802E0238ECB1600EF67E1 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = F10802BD238ECB1500EF67E1;
+					};
+				};
+			};
+			buildConfigurationList = F10802B9238ECB1500EF67E1 /* Build configuration list for PBXProject "AndroidDevices" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F10802B5238ECB1500EF67E1;
+			productRefGroup = F10802BF238ECB1500EF67E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F10802BD238ECB1500EF67E1 /* AndroidDevices */,
+				F10802D5238ECB1600EF67E1 /* AndroidDevicesTests */,
+				F10802E0238ECB1600EF67E1 /* AndroidDevicesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F10802BC238ECB1500EF67E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F10802CF238ECB1600EF67E1 /* Main.storyboard in Resources */,
+				F10802CC238ECB1600EF67E1 /* Preview Assets.xcassets in Resources */,
+				F10802C9238ECB1600EF67E1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F10802D4238ECB1600EF67E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F10802DF238ECB1600EF67E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F10802BA238ECB1500EF67E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F10802C4238ECB1500EF67E1 /* ContentView.swift in Sources */,
+				F10802C7238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld in Sources */,
+				F10802C2238ECB1500EF67E1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F10802D2238ECB1600EF67E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F10802DB238ECB1600EF67E1 /* AndroidDevicesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F10802DD238ECB1600EF67E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F10802E6238ECB1600EF67E1 /* AndroidDevicesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F10802D8238ECB1600EF67E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F10802BD238ECB1500EF67E1 /* AndroidDevices */;
+			targetProxy = F10802D7238ECB1600EF67E1 /* PBXContainerItemProxy */;
+		};
+		F10802E3238ECB1600EF67E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F10802BD238ECB1500EF67E1 /* AndroidDevices */;
+			targetProxy = F10802E2238ECB1600EF67E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F10802CD238ECB1600EF67E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F10802CE238ECB1600EF67E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F10802E8238ECB1600EF67E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F10802E9238ECB1600EF67E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		F10802EB238ECB1600EF67E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AndroidDevices/AndroidDevices.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"AndroidDevices/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AndroidDevices/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F10802EC238ECB1600EF67E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AndroidDevices/AndroidDevices.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"AndroidDevices/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AndroidDevices/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F10802EE238ECB1600EF67E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AndroidDevicesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevicesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AndroidDevices.app/Contents/MacOS/AndroidDevices";
+			};
+			name = Debug;
+		};
+		F10802EF238ECB1600EF67E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AndroidDevicesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevicesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AndroidDevices.app/Contents/MacOS/AndroidDevices";
+			};
+			name = Release;
+		};
+		F10802F1238ECB1600EF67E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AndroidDevicesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevicesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = AndroidDevices;
+			};
+			name = Debug;
+		};
+		F10802F2238ECB1600EF67E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AndroidDevicesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevicesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = AndroidDevices;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F10802B9238ECB1500EF67E1 /* Build configuration list for PBXProject "AndroidDevices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10802E8238ECB1600EF67E1 /* Debug */,
+				F10802E9238ECB1600EF67E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F10802EA238ECB1600EF67E1 /* Build configuration list for PBXNativeTarget "AndroidDevices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10802EB238ECB1600EF67E1 /* Debug */,
+				F10802EC238ECB1600EF67E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F10802ED238ECB1600EF67E1 /* Build configuration list for PBXNativeTarget "AndroidDevicesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10802EE238ECB1600EF67E1 /* Debug */,
+				F10802EF238ECB1600EF67E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F10802F0238ECB1600EF67E1 /* Build configuration list for PBXNativeTarget "AndroidDevicesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10802F1238ECB1600EF67E1 /* Debug */,
+				F10802F2238ECB1600EF67E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F10802C5238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F10802C6238ECB1500EF67E1 /* AndroidDevices.xcdatamodel */,
+			);
+			currentVersion = F10802C6238ECB1500EF67E1 /* AndroidDevices.xcdatamodel */;
+			path = AndroidDevices.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F10802B6238ECB1500EF67E1 /* Project object */;
+}

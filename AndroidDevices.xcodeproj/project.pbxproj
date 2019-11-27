@@ -15,6 +15,7 @@
 		F10802CF238ECB1600EF67E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10802CD238ECB1600EF67E1 /* Main.storyboard */; };
 		F10802DB238ECB1600EF67E1 /* AndroidDevicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802DA238ECB1600EF67E1 /* AndroidDevicesTests.swift */; };
 		F10802E6238ECB1600EF67E1 /* AndroidDevicesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */; };
+		F142B75C238EF38D00508AD6 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F142B75B238EF38D00508AD6 /* HelperFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		F10802E1238ECB1600EF67E1 /* AndroidDevicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AndroidDevicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidDevicesUITests.swift; sourceTree = "<group>"; };
 		F10802E7238ECB1600EF67E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F142B75B238EF38D00508AD6 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				F10802D1238ECB1600EF67E1 /* AndroidDevices.entitlements */,
 				F10802C5238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld */,
 				F10802CA238ECB1600EF67E1 /* Preview Content */,
+				F142B75B238EF38D00508AD6 /* HelperFunctions.swift */,
 			);
 			path = AndroidDevices;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F10802C4238ECB1500EF67E1 /* ContentView.swift in Sources */,
+				F142B75C238EF38D00508AD6 /* HelperFunctions.swift in Sources */,
 				F10802C7238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld in Sources */,
 				F10802C2238ECB1500EF67E1 /* AppDelegate.swift in Sources */,
 			);
@@ -436,9 +440,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AndroidDevices/AndroidDevices.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AndroidDevices/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AndroidDevices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -448,6 +453,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -457,9 +463,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AndroidDevices/AndroidDevices.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AndroidDevices/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AndroidDevices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -469,6 +476,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

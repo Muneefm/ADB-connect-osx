@@ -10,27 +10,111 @@ import Cocoa
 import SwiftUI
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSMenuItem, NSApplicationDelegate {
 
     var window: NSWindow!
-
+    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
+    let popover = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
+//        let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
+//
+//        // Create the window and set the content view.
+//        window = NSWindow(
+//            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+//            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+//            backing: .buffered, defer: false)
+//        window.center()
+//        window.setFrameAutosaveName("Main Window")
+//        window.contentView = NSHostingView(rootView: contentView)
+//        window.makeKeyAndOrderFront(nil)
+        
+        
+        print("Application Did finish Loading")
+        
+        if let button = statusItem.button {
+            button.target = self
+                 // button.image = NSImage(named:NSImage.Name("StatusBarIcon"))
+            button.action = #selector(AppDelegate.showContextMenu(_:))
+            button.title = "ADB"
+            // let options: NSEvent.EventTypeMask = [.LeftMouseUpMask, .RightMouseUpMask]
+            // statusItem.button?.sendActionOn(Int(options.rawValue))
 
-        // Create the window and set the content view. 
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
-        window.makeKeyAndOrderFront(nil)
+            // button.menu = menu
+             // constructMenu()
+
+               }
     }
+    
+    func closeApp() {
+        print("Close app")
+    }
+    
+    lazy var statusMenu: NSMenu = {
+        
+        let rightClickMenu = NSMenu()
+        rightClickMenu.addItem(NSMenuItem(title: "Close", action: #selector(AppDelegate.onClick(_:)), keyEquivalent: ""))
+        return rightClickMenu
+    }()
+    
+    @objc func showContextMenu(_ sender: Any) {
+        print("showContextMenu app")
+        statusItem.popUpMenu(constructMenu())
 
+        // switch NSApp.currentEvent!.type {
+//        case .rightMouseUp:
+//            statusItem.popUpMenu(statusMenu)
+//        default:
+//            popover.show(relativeTo: (sender as AnyObject).bounds, of: sender as! NSView, preferredEdge: NSRectEdge.maxY)
+        // }
+    }
+    
+     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        print("Test validateMenuItem")
+        return true
+    }
+    
+//    override func validateUserInterfaceItem() -> bool {
+//        print("Test validateMenuItem2")
+//        return true
+//    }
+    
+    func constructMenu() -> NSMenu {
+           let menu = NSMenu()
+        let connectedDeviceList = Helper.getConnectedDevices()
+        for device in (connectedDeviceList)! {
+            print("Connected Devices - ", device)
+            if device != "" {
+             menu.addItem(NSMenuItem(title: device, action: nil, keyEquivalent: "s"))
+
+             menu.addItem(NSMenuItem.separator())
+            }
+        }
+           menu.addItem(NSMenuItem(title: "ADB through wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "s"))
+           menu.addItem(NSMenuItem.separator())
+           menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+           // print("neb", menu)
+           // button.menu = menu
+        return menu
+        // statusItem.menu = menu
+       }
+    
+    @objc func actionConnectWifi(_ sender: Any?) {
+        print("actionConnectWifi called")
+        Helper.connectADB()
+        
+        
+    }
+    
+    @objc func onClick(_ sender: Any?){
+           print("on action click")
+        
+        // constructMenu()
+       }
+    
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
@@ -131,6 +215,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // If we got here, it is time to quit.
         return .terminateNow
     }
+    
+
+    //    func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+    //        print("valideMenuItem")
+    ////        if(menuItem.action == Selector("batteryStatus:")) {
+    ////            NSLog("refresh!");
+    ////            let now = NSDate()
+    ////            menuItem.title = String(format:"%f", now.timeIntervalSince1970);
+    ////            return true;
+    ////        }
+    //        return true;
+    //    }
+    //
+        
 
 }
 

@@ -91,17 +91,20 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         
         for device in (connectedDeviceList)! {
             print("Connected Devices - ", device)
-            print(" condition value ", device.contains("devices"))
-            if (device != "" && !device.contains("devices")) {
+            print(" condition value ", device.contains("List of devices attached"))
+            if (device != "" && !device.contains("List of devices attached")) {
                 let menuItem = NSMenuItem(title: device, action: nil, keyEquivalent: "s")
                 menuItem.indentationLevel = 1
                 menu.addItem(menuItem)
                 let subMenu = NSMenu()
                 // subMenu.setTarget = self
-                let disconnectMenu = NSMenuItem(title: "Disconnect", action: #selector(AppDelegate.disconnectADBAction(_:)), keyEquivalent: "D")
-                disconnectMenu.representedObject = device
-                subMenu.addItem(disconnectMenu)
-                menu.setSubmenu(subMenu, for: menuItem)
+                if device.contains("5555") {
+                    let disconnectMenu = NSMenuItem(title: "Disconnect", action: #selector(AppDelegate.disconnectADBAction(_:)), keyEquivalent: "D")
+                    disconnectMenu.representedObject = device
+                    subMenu.addItem(disconnectMenu)
+                    menu.setSubmenu(subMenu, for: menuItem)
+
+                }
                 menu.addItem(NSMenuItem.separator())
             }
         }
@@ -114,7 +117,16 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
    
     @objc func disconnectADBAction(_ sender: NSMenuItem?) {
         print("disconnectADBAction called", sender?.representedObject)
-        Helper.disconnectADBDevice(id: "test")
+        let originalString = sender?.representedObject as! String;
+//       if let first = originalString.components(separatedBy: " ").first {
+//           Helper.disconnectADBDevice(id: first)
+//       }
+        if let range = originalString.range(of: "device") {
+            let firstPart = originalString[originalString.startIndex..<range.lowerBound]
+            print("substring - ", firstPart)
+            let myString = String(firstPart)
+            Helper.disconnectADBDevice(id: myString)
+        }
        }
        
     

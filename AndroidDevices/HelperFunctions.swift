@@ -51,7 +51,22 @@ class Helper{
   }
     
     static func disconnectADBDevice(id: String) -> Void {
-        print("diconnectADB called")
+        print("diconnectADB called ", id)
+
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb disconnect \(id)"
+        print("final script", script)
+        let task = Process()
+        let pipe = Pipe()
+        // task.terminationHandler = self.commandTerminationHandler
+        task.launchPath = "/bin/bash"
+        task.arguments = ["-c", script]
+        task.standardOutput = pipe
+        task.launch()
+        // print(lan)
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: data, encoding: String.Encoding.utf8)
+        print( "output -- ", output )
+        // return output?.components(separatedBy: "\n")
         
     }
 }

@@ -110,6 +110,9 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         }
            menu.addItem(NSMenuItem(title: "ADB through wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "s"))
            menu.addItem(NSMenuItem.separator())
+          menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "s"))
+        menu.addItem(NSMenuItem.separator())
+
            menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         return menu
         // statusItem.menu = menu
@@ -148,6 +151,54 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         // constructMenu()
        }
     
+    
+    @objc func apkSelectView(_ sender: Any?) {
+        let dialog = NSOpenPanel();
+        
+        dialog.title                   = "Choose a .apk file";
+        dialog.showsResizeIndicator    = true;
+        dialog.showsHiddenFiles        = false;
+        dialog.canChooseDirectories    = true;
+        dialog.canCreateDirectories    = true;
+        dialog.allowsMultipleSelection = false;
+        dialog.allowedFileTypes        = ["apk"];
+
+        if (dialog.runModal() == NSApplication.ModalResponse.OK) {
+            let result = dialog.url // Pathname of the file
+            
+            if (result != nil) {
+                let path = result!.path
+                print("Recieved path - ", path)
+                let completeUrl = URL(fileURLWithPath: path)
+                print("Recieved path url - ", completeUrl)
+
+                if Helper.installAPK(path: path) {
+                    dialogOKCancel(question: "Istall Success" , text: "APK installed successfully")
+                } else {
+                    dialogOKCancel(question: "Istall Failed" , text: "APK installation failed")
+                }
+                // filename_field.stringValue = path
+                // dialogOKCancel(question: "This is question" , text: "This is string")
+            }
+        } else {
+            // User clicked on "Cancel"
+            return
+        }
+    }
+    
+    func dialogOKCancel(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        // alert.alertStyle = NSAlert.Style.WarningAlertStyle
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        let res = alert.runModal()
+        if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+            return true
+        }
+        return false
+    }
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application

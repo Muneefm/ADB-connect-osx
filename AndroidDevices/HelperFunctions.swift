@@ -69,4 +69,29 @@ class Helper{
         // return output?.components(separatedBy: "\n")
         
     }
+    
+    static func installAPK(path: String) -> Bool {
+        print("installAPk path - ", path)
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb install \(path)"
+        print("final script", script)
+        let task = Process()
+        let pipe = Pipe()
+        // task.terminationHandler = self.commandTerminationHandler
+        task.launchPath = "/bin/bash"
+        task.arguments = ["-c", script]
+        task.standardOutput = pipe
+        task.launch()
+        // print(lan)
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: data, encoding: String.Encoding.utf8)
+        print("install apk output - ", output)
+        if output!.contains("Success") {
+            return true
+        }
+        return false
+    }
+    
+        
+
+    
 }

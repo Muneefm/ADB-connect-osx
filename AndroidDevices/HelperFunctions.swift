@@ -50,4 +50,9 @@ class Helper{
           print("terminal out - ", stringToSplit?[2])
       }
   }
+    
+    static func disconnectADBDevice(id: String) -> Void {
+        print("diconnectADB called")
+        
+    }
 }

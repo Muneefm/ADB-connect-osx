@@ -87,7 +87,13 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         for device in (connectedDeviceList)! {
             print("Connected Devices - ", device)
             if device != "" {
-             menu.addItem(NSMenuItem(title: device, action: nil, keyEquivalent: "s"))
+                let menuItem = NSMenuItem(title: device, action: nil, keyEquivalent: "s")
+                menu.addItem(menuItem)
+                let subMenu = NSMenu()
+                // subMenu.setTarget = self
+                subMenu.addItem(withTitle: "Disconnect", action: #selector(disconnectADBAction(_:)), keyEquivalent: "D")
+                menu.setSubmenu(subMenu, for: menuItem)
+                
 
              menu.addItem(NSMenuItem.separator())
             }
@@ -100,13 +106,24 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         return menu
         // statusItem.menu = menu
        }
+   
+    @objc func disconnectADBAction(_ sender: Any?, ip: String?) {
+           print("disconnectADBAction called")
+        Helper.disconnectADBDevice(id: "test")
+       }
+       
     
     @objc func actionConnectWifi(_ sender: Any?) {
         print("actionConnectWifi called")
         Helper.connectADB()
-        
-        
     }
+    
+    @objc func subMenuDevice(_ sender: Any?) {
+        print("actionConnectWifi called")
+        // constructMenu()
+        // Helper.connectADB()
+    }
+    
     
     @objc func onClick(_ sender: Any?){
            print("on action click")

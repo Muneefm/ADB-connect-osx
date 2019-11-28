@@ -84,31 +84,36 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
     func constructMenu() -> NSMenu {
            let menu = NSMenu()
         let connectedDeviceList = Helper.getConnectedDevices()
+        // menu.title = "Connected Devices:"
+        menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "s"))
+        // menu.addItem(NSMenuItem.indentationLevel)
+        menu.addItem(NSMenuItem.separator())
+        
         for device in (connectedDeviceList)! {
             print("Connected Devices - ", device)
-            if device != "" {
+            print(" condition value ", device.contains("devices"))
+            if (device != "" && !device.contains("devices")) {
                 let menuItem = NSMenuItem(title: device, action: nil, keyEquivalent: "s")
+                menuItem.indentationLevel = 1
                 menu.addItem(menuItem)
                 let subMenu = NSMenu()
                 // subMenu.setTarget = self
-                subMenu.addItem(withTitle: "Disconnect", action: #selector(disconnectADBAction(_:)), keyEquivalent: "D")
+                let disconnectMenu = NSMenuItem(title: "Disconnect", action: #selector(AppDelegate.disconnectADBAction(_:)), keyEquivalent: "D")
+                disconnectMenu.representedObject = device
+                subMenu.addItem(disconnectMenu)
                 menu.setSubmenu(subMenu, for: menuItem)
-                
-
-             menu.addItem(NSMenuItem.separator())
+                menu.addItem(NSMenuItem.separator())
             }
         }
            menu.addItem(NSMenuItem(title: "ADB through wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "s"))
            menu.addItem(NSMenuItem.separator())
            menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-           // print("neb", menu)
-           // button.menu = menu
         return menu
         // statusItem.menu = menu
        }
    
-    @objc func disconnectADBAction(_ sender: Any?, ip: String?) {
-           print("disconnectADBAction called")
+    @objc func disconnectADBAction(_ sender: NSMenuItem?) {
+        print("disconnectADBAction called", sender?.representedObject)
         Helper.disconnectADBDevice(id: "test")
        }
        

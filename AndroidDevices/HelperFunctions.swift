@@ -9,7 +9,6 @@
 import Foundation
 
 class Helper{
-    
     /**
        Get connected Android devices as String array
      */
@@ -27,7 +26,7 @@ class Helper{
                let output = String(data: data, encoding: String.Encoding.utf8)
                return output?.components(separatedBy: "\n")
     }
-    
+
   /**
     Connect Android Device via Wifi
      */

@@ -70,9 +70,19 @@ class Helper{
         
     }
     
-    static func installAPK(path: String) -> Bool {
+    static func installAPK(path: String) -> String {
         print("installAPk path - ", path)
-        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb install \(path)"
+        
+        
+        // let escapedPath = path.replacingOccurrences(of: " " , with: "\ ")
+//        let escapeWhiteSpacePath = path.replacingOccurrences(of: " ", with: "\\ ")
+//        let escapeOpenBracePath = escapeWhiteSpacePath.replacingOccurrences(of: "(", with: "\\(")
+//        let escapePath = escapeOpenBracePath.replacingOccurrences(of: ")", with: "\\)")
+
+        // print("Escaped character - ", escapePath)
+
+        
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb install \"\(path)\""
         print("final script", script)
         let task = Process()
         let pipe = Pipe()
@@ -80,18 +90,20 @@ class Helper{
         task.launchPath = "/bin/bash"
         task.arguments = ["-c", script]
         task.standardOutput = pipe
-        task.launch()
-        // print(lan)
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: String.Encoding.utf8)
-        print("install apk output - ", output)
-        if output!.contains("Success") {
-            return true
-        }
-        return false
-    }
-    
-        
+        task.standardError = pipe
 
-    
+        task.launch()
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        var output = String(data: data, encoding: String.Encoding.utf8)
+        let trimWord = "Performing Streamed Install"
+        if let range = output?.range(of: trimWord) {
+           output?.removeSubrange(range)
+        }
+        return output ?? "Could not parse data"
+        // return "test"
+//        if output!.contains("Success") {
+//            return true
+//        }
+//        return false
+    }
 }

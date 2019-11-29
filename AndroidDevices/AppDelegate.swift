@@ -171,12 +171,14 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                 print("Recieved path - ", path)
                 let completeUrl = URL(fileURLWithPath: path)
                 print("Recieved path url - ", completeUrl)
+                let output = Helper.installAPK(path: path)
+                dialogOKCancel(question: "APK install Status" , text: output)
 
-                if Helper.installAPK(path: path) {
-                    dialogOKCancel(question: "Istall Success" , text: "APK installed successfully")
-                } else {
-                    dialogOKCancel(question: "Istall Failed" , text: "APK installation failed")
-                }
+//                if Helper.installAPK(path: path) {
+//                    dialogOKCancel(question: "Istall Success" , text: "APK installed successfully")
+//                } else {
+//                    dialogOKCancel(question: "Istall Failed" , text: "APK installation failed")
+//                }
                 // filename_field.stringValue = path
                 // dialogOKCancel(question: "This is question" , text: "This is string")
             }

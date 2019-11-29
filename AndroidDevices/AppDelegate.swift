@@ -91,7 +91,7 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                 menu.addItem(NSMenuItem.separator())
             }
         }
-           menu.addItem(NSMenuItem(title: "ADB through wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
+           menu.addItem(NSMenuItem(title: "ADB over wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
            menu.addItem(NSMenuItem.separator())
           menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "i"))
         menu.addItem(NSMenuItem.separator())

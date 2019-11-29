@@ -51,6 +51,7 @@
 		F10802E1238ECB1600EF67E1 /* AndroidDevicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AndroidDevicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidDevicesUITests.swift; sourceTree = "<group>"; };
 		F10802E7238ECB1600EF67E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10DE14723919B30006E2CCF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F142B75B238EF38D00508AD6 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +83,7 @@
 		F10802B5238ECB1500EF67E1 = {
 			isa = PBXGroup;
 			children = (
+				F10DE14723919B30006E2CCF /* README.md */,
 				F10802C0238ECB1500EF67E1 /* AndroidDevices */,
 				F10802D9238ECB1600EF67E1 /* AndroidDevicesTests */,
 				F10802E4238ECB1600EF67E1 /* AndroidDevicesUITests */,

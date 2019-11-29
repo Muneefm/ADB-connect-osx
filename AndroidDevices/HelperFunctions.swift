@@ -31,7 +31,6 @@ class Helper{
     Connect Android Device via Wifi
      */
   static func connectADB() -> Void {
-      print("runScript called ")
       
       let script = "/Users/muneefm/scripts/connect-adb.sh"
       let task = Process()
@@ -54,7 +53,6 @@ class Helper{
         print("diconnectADB called ", id)
 
         let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb disconnect \(id)"
-        print("final script", script)
         let task = Process()
         let pipe = Pipe()
         // task.terminationHandler = self.commandTerminationHandler
@@ -71,19 +69,7 @@ class Helper{
     }
     
     static func installAPK(path: String) -> String {
-        print("installAPk path - ", path)
-        
-        
-        // let escapedPath = path.replacingOccurrences(of: " " , with: "\ ")
-//        let escapeWhiteSpacePath = path.replacingOccurrences(of: " ", with: "\\ ")
-//        let escapeOpenBracePath = escapeWhiteSpacePath.replacingOccurrences(of: "(", with: "\\(")
-//        let escapePath = escapeOpenBracePath.replacingOccurrences(of: ")", with: "\\)")
-
-        // print("Escaped character - ", escapePath)
-
-        
         let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb install \"\(path)\""
-        print("final script", script)
         let task = Process()
         let pipe = Pipe()
         // task.terminationHandler = self.commandTerminationHandler
@@ -100,10 +86,5 @@ class Helper{
            output?.removeSubrange(range)
         }
         return output ?? "Could not parse data"
-        // return "test"
-//        if output!.contains("Success") {
-//            return true
-//        }
-//        return false
     }
 }

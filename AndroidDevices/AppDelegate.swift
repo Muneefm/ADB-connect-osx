@@ -60,40 +60,24 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
     }()
     
     @objc func showContextMenu(_ sender: Any) {
-        print("showContextMenu app")
         statusItem.popUpMenu(constructMenu())
-
-        // switch NSApp.currentEvent!.type {
-//        case .rightMouseUp:
-//            statusItem.popUpMenu(statusMenu)
-//        default:
-//            popover.show(relativeTo: (sender as AnyObject).bounds, of: sender as! NSView, preferredEdge: NSRectEdge.maxY)
-        // }
     }
     
      func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        print("Test validateMenuItem")
         return true
     }
     
-//    override func validateUserInterfaceItem() -> bool {
-//        print("Test validateMenuItem2")
-//        return true
-//    }
     
     func constructMenu() -> NSMenu {
            let menu = NSMenu()
         let connectedDeviceList = Helper.getConnectedDevices()
-        // menu.title = "Connected Devices:"
-        menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "s"))
+        menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: ""))
         // menu.addItem(NSMenuItem.indentationLevel)
         menu.addItem(NSMenuItem.separator())
         
         for device in (connectedDeviceList)! {
-            print("Connected Devices - ", device)
-            print(" condition value ", device.contains("List of devices attached"))
             if (device != "" && !device.contains("List of devices attached")) {
-                let menuItem = NSMenuItem(title: device, action: nil, keyEquivalent: "s")
+                let menuItem = NSMenuItem(title: device, action: nil, keyEquivalent: "")
                 menuItem.indentationLevel = 1
                 menu.addItem(menuItem)
                 let subMenu = NSMenu()
@@ -103,14 +87,13 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                     disconnectMenu.representedObject = device
                     subMenu.addItem(disconnectMenu)
                     menu.setSubmenu(subMenu, for: menuItem)
-
                 }
                 menu.addItem(NSMenuItem.separator())
             }
         }
-           menu.addItem(NSMenuItem(title: "ADB through wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "s"))
+           menu.addItem(NSMenuItem(title: "ADB through wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
            menu.addItem(NSMenuItem.separator())
-          menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "s"))
+          menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "i"))
         menu.addItem(NSMenuItem.separator())
 
            menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
@@ -168,19 +151,9 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
             
             if (result != nil) {
                 let path = result!.path
-                print("Recieved path - ", path)
                 let completeUrl = URL(fileURLWithPath: path)
-                print("Recieved path url - ", completeUrl)
                 let output = Helper.installAPK(path: path)
                 dialogOKCancel(question: "APK install Status" , text: output)
-
-//                if Helper.installAPK(path: path) {
-//                    dialogOKCancel(question: "Istall Success" , text: "APK installed successfully")
-//                } else {
-//                    dialogOKCancel(question: "Istall Failed" , text: "APK installation failed")
-//                }
-                // filename_field.stringValue = path
-                // dialogOKCancel(question: "This is question" , text: "This is string")
             }
         } else {
             // User clicked on "Cancel"

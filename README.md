@@ -10,6 +10,10 @@ ADB connect is a mac ( OSX ) application that will help u debug your android dev
 
 Now u can disconnect USB device from your phone and continue over wifi
 
+### Features
+ - Connect / Disconnect devices over wifi
+ - Install apk by selecting the file
+
 
 ![Screenshot](screenshots/sc1.png)
 

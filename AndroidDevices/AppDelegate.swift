@@ -67,14 +67,19 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         return true
     }
     
-    
+    /* Creating Drop down menu */
     func constructMenu() -> NSMenu {
-           let menu = NSMenu()
+        let menu = NSMenu()
         let connectedDeviceList = Helper.getConnectedDevices()
+        // Ttitle
         menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: ""))
         // menu.addItem(NSMenuItem.indentationLevel)
         menu.addItem(NSMenuItem.separator())
         
+        /*
+         Loop through Connected Devices
+         and Add them to list
+         */
         for device in (connectedDeviceList)! {
             if (device != "" && !device.contains("List of devices attached")) {
                 let menuItem = NSMenuItem(title: device, action: nil, keyEquivalent: "")
@@ -88,15 +93,25 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                     subMenu.addItem(disconnectMenu)
                     menu.setSubmenu(subMenu, for: menuItem)
                 }
+                /*
+                 Install Apk Menu for each devices
+                 Sends the device id in representedObject key
+                 */
+                let installApkMenu = NSMenuItem(title: "Install APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "I")
+                installApkMenu.representedObject = device
+                subMenu.addItem(installApkMenu)
+                menu.setSubmenu(subMenu, for: menuItem)
                 menu.addItem(NSMenuItem.separator())
             }
         }
-           menu.addItem(NSMenuItem(title: "ADB over wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
-           menu.addItem(NSMenuItem.separator())
-          menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "i"))
+        /* Menu to Connect to device over wifi */
+        menu.addItem(NSMenuItem(title: "ADB over wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
         menu.addItem(NSMenuItem.separator())
-
-           menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        /* Install Apk using a file selector */
+//        menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "i"))
+        menu.addItem(NSMenuItem.separator())
+       
+        menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         return menu
         // statusItem.menu = menu
        }
@@ -104,21 +119,21 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
     @objc func disconnectADBAction(_ sender: NSMenuItem?) {
         print("disconnectADBAction called", sender?.representedObject)
         let originalString = sender?.representedObject as! String;
-//       if let first = originalString.components(separatedBy: " ").first {
-//           Helper.disconnectADBDevice(id: first)
-//       }
+        // TODO Call helper instead
         if let range = originalString.range(of: "device") {
             let firstPart = originalString[originalString.startIndex..<range.lowerBound]
             print("substring - ", firstPart)
-            let myString = String(firstPart)
-            Helper.disconnectADBDevice(id: myString)
+            let deviceID = String(firstPart)
+            Helper.disconnectADBDevice(id: deviceID)
         }
        }
        
     
     @objc func actionConnectWifi(_ sender: Any?) {
         print("actionConnectWifi called")
-        Helper.connectADB()
+        let output = Helper.connectADB()
+        dialogOKCancel(question: "Output" , text: output)
+
     }
     
     @objc func subMenuDevice(_ sender: Any?) {
@@ -134,10 +149,16 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         // constructMenu()
        }
     
-    
-    @objc func apkSelectView(_ sender: Any?) {
-        let dialog = NSOpenPanel();
+    /* Entry Point when apk intall has Selected */
+    @objc func apkSelectView(_ sender: NSMenuItem?) {
+        /* Complete Device id with "device at the end" */
+        let deviceName = sender?.representedObject as! String;
+        print("Device name ", deviceName)
         
+        let deviceID = Helper.parseDeviceID(deviceName: deviceName)
+        print("Device id got = ", deviceID)
+        
+        let dialog = NSOpenPanel();
         dialog.title                   = "Choose a .apk file";
         dialog.showsResizeIndicator    = true;
         dialog.showsHiddenFiles        = false;
@@ -152,7 +173,7 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
             if (result != nil) {
                 let path = result!.path
                 let completeUrl = URL(fileURLWithPath: path)
-                let output = Helper.installAPK(path: path)
+                let output = Helper.installAPK(deviceID: deviceID ?? "", path: path)
                 dialogOKCancel(question: "APK install Status" , text: output)
             }
         } else {
@@ -167,7 +188,7 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         alert.informativeText = text
         // alert.alertStyle = NSAlert.Style.WarningAlertStyle
         alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Cancel")
+        // alert.addButton(withTitle: "Cancel")
         let res = alert.runModal()
         if res == NSApplication.ModalResponse.alertFirstButtonReturn {
             return true

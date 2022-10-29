@@ -13,15 +13,13 @@ class Helper{
        Get connected Android devices as String array
      */
     static func getConnectedDevices() -> [String]? {
-        let script = "/Users/muneefm/Library/Android/sdk/platform-tools/./adb devices"
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb devices"
                let task = Process()
                let pipe = Pipe()
-               // task.terminationHandler = self.commandTerminationHandler
                task.launchPath = "/bin/bash"
                task.arguments = ["-c", script]
                task.standardOutput = pipe
                task.launch()
-               // print(lan)
                let data = pipe.fileHandleForReading.readDataToEndOfFile()
                let output = String(data: data, encoding: String.Encoding.utf8)
                return output?.components(separatedBy: "\n")
@@ -31,7 +29,6 @@ class Helper{
   static func connectADB() -> String {
     let adbBasePath = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb"
     var ipAddr = runScript(script: "\(adbBasePath) shell ip addr show wlan0 | grep \"inet\\s\" | awk '{print $2}' | awk -F'/' '{print $1}'")
-        print("ip got - ", ipAddr);
     if ipAddr.contains("error") {
         return "Error no IP Address Found"
     }
@@ -57,8 +54,6 @@ class Helper{
     }
     
     static func disconnectADBDevice(id: String) -> Void {
-        print("diconnectADB called ", id)
-
         let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb disconnect \(id)"
         let task = Process()
         let pipe = Pipe()
@@ -70,7 +65,6 @@ class Helper{
         // print(lan)
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: String.Encoding.utf8)
-        print( "output -- ", output )
         // return output?.components(separatedBy: "\n")
         
     }
@@ -104,19 +98,21 @@ class Helper{
     /**  func to get pref  using a key  */
     static func getUserPref(key: String) -> String? {
         let defaults = UserDefaults.standard
-        print("get value pref = ", defaults.object(forKey: key) )
         return defaults.object(forKey: key) as! String
     }
     
     static func parseDeviceID(deviceName: String) -> String? {
-        print("ParseDeviceID - ", deviceName)
         if let range = deviceName.range(of: "device") {
                    let firstPart = deviceName[deviceName.startIndex..<range.lowerBound]
-                   print("substring - ", firstPart)
                    let deviceID = String(firstPart)
-                   // Helper.disconnectADBDevice(id: deviceID)\
                    return deviceID
         }
         return nil
     }
+    
+    static func pasteInDevice(value: String) -> Void {
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb shell input text \(value)"
+        runScript(script: script)
+    }
+    
 }

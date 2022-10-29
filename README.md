@@ -1,6 +1,6 @@
 # ADB connect
 
-ADB connect is a mac ( OSX ) application that will help u debug your android device in mac over the wifi by just clicking an option. 
+ADB connect is mac ( OSX ) App for easy adb interface. 
 
 
 ### To connect your device over wifi
@@ -13,7 +13,5 @@ Now u can disconnect USB device from your phone and continue over wifi
 ### Features
  - Connect / Disconnect devices over wifi
  - Install apk by selecting the file
-
-
-![Screenshot](screenshots/sc1.png)
+ - Paste to Android from mac
 

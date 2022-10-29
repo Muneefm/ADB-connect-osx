@@ -17,33 +17,12 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
     let popover = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
-        // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-//        let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
-//
-//        // Create the window and set the content view.
-//        window = NSWindow(
-//            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-//            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-//            backing: .buffered, defer: false)
-//        window.center()
-//        window.setFrameAutosaveName("Main Window")
-//        window.contentView = NSHostingView(rootView: contentView)
-//        window.makeKeyAndOrderFront(nil)
-        
-        
-        print("Application Did finish Loading")
         
         if let button = statusItem.button {
             button.target = self
                  // button.image = NSImage(named:NSImage.Name("StatusBarIcon"))
             button.action = #selector(AppDelegate.showContextMenu(_:))
             button.title = "ADB"
-            // let options: NSEvent.EventTypeMask = [.LeftMouseUpMask, .RightMouseUpMask]
-            // statusItem.button?.sendActionOn(Int(options.rawValue))
-
-            // button.menu = menu
-             // constructMenu()
 
                }
     }
@@ -98,8 +77,12 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                  Sends the device id in representedObject key
                  */
                 let installApkMenu = NSMenuItem(title: "Install APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "I")
+                let clipboardPaste = NSMenuItem(title: "Paste in Device", action: #selector(AppDelegate.pasteInDevice(_:)), keyEquivalent: "b")
                 installApkMenu.representedObject = device
+                clipboardPaste.representedObject = device
                 subMenu.addItem(installApkMenu)
+                subMenu.addItem(clipboardPaste)
+
                 menu.setSubmenu(subMenu, for: menuItem)
                 menu.addItem(NSMenuItem.separator())
             }
@@ -117,12 +100,10 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
        }
    
     @objc func disconnectADBAction(_ sender: NSMenuItem?) {
-        print("disconnectADBAction called", sender?.representedObject)
         let originalString = sender?.representedObject as! String;
         // TODO Call helper instead
         if let range = originalString.range(of: "device") {
             let firstPart = originalString[originalString.startIndex..<range.lowerBound]
-            print("substring - ", firstPart)
             let deviceID = String(firstPart)
             Helper.disconnectADBDevice(id: deviceID)
         }
@@ -130,34 +111,32 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
        
     
     @objc func actionConnectWifi(_ sender: Any?) {
-        print("actionConnectWifi called")
         let output = Helper.connectADB()
         dialogOKCancel(question: "Output" , text: output)
-
     }
     
     @objc func subMenuDevice(_ sender: Any?) {
-        print("actionConnectWifi called")
         // constructMenu()
         // Helper.connectADB()
     }
     
     
-    @objc func onClick(_ sender: Any?){
-           print("on action click")
-        
+    @objc func onClick(_ sender: Any?){        
         // constructMenu()
        }
+    
+    @objc func pasteInDevice(_ sender: NSMenuItem?) {
+        if let read = NSPasteboard.general.string(forType: .string) {
+          let lastCopy = read
+            Helper.pasteInDevice(value: lastCopy)
+        }
+    }
     
     /* Entry Point when apk intall has Selected */
     @objc func apkSelectView(_ sender: NSMenuItem?) {
         /* Complete Device id with "device at the end" */
         let deviceName = sender?.representedObject as! String;
-        print("Device name ", deviceName)
-        
         let deviceID = Helper.parseDeviceID(deviceName: deviceName)
-        print("Device id got = ", deviceID)
-        
         let dialog = NSOpenPanel();
         dialog.title                   = "Choose a .apk file";
         dialog.showsResizeIndicator    = true;
@@ -271,8 +250,6 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
             try context.save()
         } catch {
             let nserror = error as NSError
-
-            // Customize this code block to include application-specific recovery steps.
             let result = sender.presentError(nserror)
             if (result) {
                 return .terminateCancel
@@ -293,23 +270,8 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                 return .terminateCancel
             }
         }
-        // If we got here, it is time to quit.
         return .terminateNow
     }
-    
-
-    //    func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-    //        print("valideMenuItem")
-    ////        if(menuItem.action == Selector("batteryStatus:")) {
-    ////            NSLog("refresh!");
-    ////            let now = NSDate()
-    ////            menuItem.title = String(format:"%f", now.timeIntervalSince1970);
-    ////            return true;
-    ////        }
-    //        return true;
-    //    }
-    //
-        
 
 }
 

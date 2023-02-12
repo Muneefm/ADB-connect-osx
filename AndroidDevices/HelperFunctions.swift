@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import CoreImage
+import SwiftUI
+import Cocoa
 
+// Helper for adb commands
 class Helper{
     /**
        Get connected Android devices as String array
@@ -62,7 +66,6 @@ class Helper{
         task.arguments = ["-c", script]
         task.standardOutput = pipe
         task.launch()
-        // print(lan)
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: String.Encoding.utf8)
         // return output?.components(separatedBy: "\n")
@@ -110,9 +113,42 @@ class Helper{
         return nil
     }
     
+    // adb command to paste in devices.
     static func pasteInDevice(value: String) -> Void {
-        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb shell input text \(value)"
+        let formatedString = escapeSpecialCharacters(input: value)
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb shell input text '\(formatedString)'"
         runScript(script: script)
     }
     
+    // adb command to paste in devices.
+    static func handleDeeplink(value: String) -> Void {
+//        let formatedString = escapeSpecialCharacters(input: value)
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb shell am start -a android.intent.action.VIEW -d '\(value)'"
+        runScript(script: script)
+    }
+    
+    static func escapeSpecialCharacters(input: String) -> String {
+        let escapeMapping: [Character: String] = [" ": "\\ ", "\\": "\\\\", ">": "\\>", "<": "\\<", ";": "\\;", "?": "\\?", "`": "\\`", "&": "\\&", "*": "\\*", "(": "\\(", ")": "\\)", "~": "\\~", "'": "\\'"]
+        return input.map { escapeMapping[$0, default: String($0)] }.joined()
+    }
+    
+    static func generateURLFriendlyString() -> String {
+        let uuid = UUID().uuidString
+        let allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
+        let filteredUUID = uuid.filter { allowedCharacters.contains($0) }
+        return String(filteredUUID)
+    }
+    static func generateQRCode(from code: String) -> NSImage? {
+        print("QR generating -- "+code)
+        let data = code.data(using: .utf8)
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        filter?.setValue(data, forKey: "inputMessage")
+        let ciImage = filter?.outputImage
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledQR = ciImage?.transformed(by: transform)
+        let rep = NSCIImageRep(ciImage: scaledQR!)
+        let nsImage = NSImage(size: rep.size)
+        nsImage.addRepresentation(rep)
+        return nsImage
+    }
 }

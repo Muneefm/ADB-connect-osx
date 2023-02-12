@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Helper for adb commands
 class Helper{
     /**
        Get connected Android devices as String array
@@ -62,7 +63,6 @@ class Helper{
         task.arguments = ["-c", script]
         task.standardOutput = pipe
         task.launch()
-        // print(lan)
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: String.Encoding.utf8)
         // return output?.components(separatedBy: "\n")
@@ -110,9 +110,16 @@ class Helper{
         return nil
     }
     
+    // adb command to paste in devices.
     static func pasteInDevice(value: String) -> Void {
-        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb shell input text \(value)"
+        let formatedString = escapeSpecialCharacters(input: value)
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb shell input text '\(formatedString)'"
         runScript(script: script)
+    }
+    
+    static func escapeSpecialCharacters(input: String) -> String {
+        let escapeMapping: [Character: String] = [" ": "\\ ", "\\": "\\\\", ">": "\\>", "<": "\\<", ";": "\\;", "?": "\\?", "`": "\\`", "&": "\\&", "*": "\\*", "(": "\\(", ")": "\\)", "~": "\\~", "'": "\\'"]
+        return input.map { escapeMapping[$0, default: String($0)] }.joined()
     }
     
 }

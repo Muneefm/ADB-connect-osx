@@ -47,23 +47,28 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         return true
     }
     
+    func listenDevices(password: String) {
+        let browser = ServiceBrowser(password: password)
+        DispatchQueue.global(qos: .background).async {
+            RunLoop.current.run()
+        }
+    }
     
     /* Creating Drop down menu */
     func constructMenu() -> NSMenu {
         let menu = NSMenu()
-        // `WIFI:T:ADB;S:${name};P:${password};;`
-        // let qrimage = Helper.generateQRCode(from: "WIFI:T:ADB;S:"+Helper.generateURLFriendlyString()+";P:"+Helper.generateURLFriendlyString()+";;")
-//        qrimage?.size = NSSize(width: 200, height: 200)
-//        let menuTest = NSMenuItem(title: "", action: #selector(AppDelegate.testAction(_:)), keyEquivalent: "")
-//        menuTest.image = qrimage
-//        menu.addItem(menuTest)
-//
-//        menu.addItem(NSMenuItem.separator())
+        let adbPassword = Helper.generateURLFriendlyString();
+        listenDevices(password: adbPassword)
+        let qrimage = Helper.generateQRCode(from: "WIFI:T:ADB;S:"+Helper.generateURLFriendlyString()+";P:"+adbPassword+";;")
+        qrimage?.size = NSSize(width: 200, height: 200)
+        let menuQRimage = NSMenuItem(title: "", action: #selector(AppDelegate.testAction(_:)), keyEquivalent: "")
+        menuQRimage.image = qrimage
+
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
 
         let connectedDeviceList = Helper.getConnectedDevices()
-        // Ttitle
         menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: ""))
-        // menu.addItem(NSMenuItem.indentationLevel)
         menu.addItem(NSMenuItem.separator())
         
         /*
@@ -104,10 +109,10 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         /* Menu to Connect to device over wifi */
         menu.addItem(NSMenuItem(title: "ADB over wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
         menu.addItem(NSMenuItem.separator())
-        /* Install Apk using a file selector */
-//        menu.addItem(NSMenuItem(title: "Inatall APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "i"))
         menu.addItem(NSMenuItem.separator())
-       
+        menu.addItem(menuQRimage)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         return menu
         // statusItem.menu = menu
@@ -127,6 +132,8 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
     @objc func actionConnectWifi(_ sender: Any?) {
         let output = Helper.connectADB()
         dialogOKCancel(question: "Output" , text: output)
+    }
+    @objc func testAction(_ sender: Any?) {
     }
     
 

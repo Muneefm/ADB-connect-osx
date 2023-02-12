@@ -8,6 +8,7 @@
 
 import Cocoa
 import SwiftUI
+import CoreImage
 
 @NSApplicationMain
 class AppDelegate: NSMenuItem, NSApplicationDelegate {
@@ -46,9 +47,19 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         return true
     }
     
+    
     /* Creating Drop down menu */
     func constructMenu() -> NSMenu {
         let menu = NSMenu()
+        // `WIFI:T:ADB;S:${name};P:${password};;`
+        // let qrimage = Helper.generateQRCode(from: "WIFI:T:ADB;S:"+Helper.generateURLFriendlyString()+";P:"+Helper.generateURLFriendlyString()+";;")
+//        qrimage?.size = NSSize(width: 200, height: 200)
+//        let menuTest = NSMenuItem(title: "", action: #selector(AppDelegate.testAction(_:)), keyEquivalent: "")
+//        menuTest.image = qrimage
+//        menu.addItem(menuTest)
+//
+//        menu.addItem(NSMenuItem.separator())
+
         let connectedDeviceList = Helper.getConnectedDevices()
         // Ttitle
         menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: ""))
@@ -76,11 +87,14 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                  Install Apk Menu for each devices
                  Sends the device id in representedObject key
                  */
-                let installApkMenu = NSMenuItem(title: "Install APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "I")
+                let installApkMenu = NSMenuItem(title: "Install APK", action: #selector(AppDelegate.apkSelectView(_:)), keyEquivalent: "i")
+                let sendDeeplinkMenu = NSMenuItem(title: "Send Deeplink", action: #selector(AppDelegate.sendDeeplink(_:)), keyEquivalent: "d")
                 let clipboardPaste = NSMenuItem(title: "Paste in Device", action: #selector(AppDelegate.pasteInDevice(_:)), keyEquivalent: "b")
                 installApkMenu.representedObject = device
                 clipboardPaste.representedObject = device
+                sendDeeplinkMenu.representedObject = device
                 subMenu.addItem(installApkMenu)
+                subMenu.addItem(sendDeeplinkMenu)
                 subMenu.addItem(clipboardPaste)
 
                 menu.setSubmenu(subMenu, for: menuItem)
@@ -115,6 +129,7 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         dialogOKCancel(question: "Output" , text: output)
     }
     
+
     @objc func subMenuDevice(_ sender: Any?) {
         // constructMenu()
         // Helper.connectADB()
@@ -129,6 +144,12 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         if let read = NSPasteboard.general.string(forType: .string) {
           let lastCopy = read
             Helper.pasteInDevice(value: lastCopy)
+        }
+    }
+    @objc func sendDeeplink(_ sender: NSMenuItem?) {
+        if let read = NSPasteboard.general.string(forType: .string) {
+          let lastCopy = read
+            Helper.handleDeeplink(value: lastCopy)
         }
     }
     

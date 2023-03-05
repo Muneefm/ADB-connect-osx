@@ -16,6 +16,7 @@ class Helper{
     /**
        Get connected Android devices as String array
      */
+    
     static func getConnectedDevices() -> [String]? {
         let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb devices"
                let task = Process()
@@ -41,6 +42,11 @@ class Helper{
     return connectDevice
   }
     
+    static func adbConnect(hostAddress: String, port: String, password: String) {
+        let script = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb pair \(hostAddress):\(port) \(password)"
+        runScript(script: script)
+    }
+    
     /* Method to run scrip and return its output */
     static func runScript(script: String) -> String {
         let task = Process()
@@ -51,7 +57,6 @@ class Helper{
         task.standardOutput = pipe
         task.standardError = pipe
         task.launch()
-        // print(lan)
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: String.Encoding.utf8)
         return output ?? "Error while parsing"

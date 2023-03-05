@@ -16,6 +16,7 @@
 		F10802DB238ECB1600EF67E1 /* AndroidDevicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802DA238ECB1600EF67E1 /* AndroidDevicesTests.swift */; };
 		F10802E6238ECB1600EF67E1 /* AndroidDevicesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10802E5238ECB1600EF67E1 /* AndroidDevicesUITests.swift */; };
 		F142B75C238EF38D00508AD6 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F142B75B238EF38D00508AD6 /* HelperFunctions.swift */; };
+		F1D19C3C2999884E00F67614 /* ServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D19C3B2999884E00F67614 /* ServiceBrowser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		F10802E7238ECB1600EF67E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10DE14723919B30006E2CCF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F142B75B238EF38D00508AD6 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		F1D19C39299982B600F67614 /* libsystem_dnssd.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_dnssd.tbd; path = usr/lib/system/libsystem_dnssd.tbd; sourceTree = SDKROOT; };
+		F1D19C3B2999884E00F67614 /* ServiceBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBrowser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,7 @@
 				F10802D9238ECB1600EF67E1 /* AndroidDevicesTests */,
 				F10802E4238ECB1600EF67E1 /* AndroidDevicesUITests */,
 				F10802BF238ECB1500EF67E1 /* Products */,
+				F1D19C38299982A400F67614 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +117,7 @@
 				F10802C5238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld */,
 				F10802CA238ECB1600EF67E1 /* Preview Content */,
 				F142B75B238EF38D00508AD6 /* HelperFunctions.swift */,
+				F1D19C3B2999884E00F67614 /* ServiceBrowser.swift */,
 			);
 			path = AndroidDevices;
 			sourceTree = "<group>";
@@ -141,6 +146,14 @@
 				F10802E7238ECB1600EF67E1 /* Info.plist */,
 			);
 			path = AndroidDevicesUITests;
+			sourceTree = "<group>";
+		};
+		F1D19C38299982A400F67614 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1D19C39299982B600F67614 /* libsystem_dnssd.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +290,7 @@
 				F10802C4238ECB1500EF67E1 /* ContentView.swift in Sources */,
 				F142B75C238EF38D00508AD6 /* HelperFunctions.swift in Sources */,
 				F10802C7238ECB1500EF67E1 /* AndroidDevices.xcdatamodeld in Sources */,
+				F1D19C3C2999884E00F67614 /* ServiceBrowser.swift in Sources */,
 				F10802C2238ECB1500EF67E1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +466,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = mnf.AndroidDevices;
@@ -475,6 +493,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.1;

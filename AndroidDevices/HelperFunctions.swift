@@ -157,3 +157,30 @@ class Helper{
         return nsImage
     }
 }
+
+func saveDeeplinkToRecents(deeplink: String) {
+    var recentsList = UserDefaults.standard.stringArray(forKey: "RecentsDeeplinks") ?? [String]()
+    recentsList.insert(deeplink, at: 0)
+    let maxRecentsCount = 5
+    if recentsList.count > maxRecentsCount {
+        recentsList = Array(recentsList.prefix(maxRecentsCount))
+    }
+    UserDefaults.standard.set(recentsList, forKey: "RecentsDeeplinks")
+}
+
+func retrieveRecentDeeplinks() -> [String] {
+    let recentsList = UserDefaults.standard.stringArray(forKey: "RecentsDeeplinks") ?? [String]()
+    return recentsList
+}
+
+class ReactNativeHelper: Helper {
+    
+    static func adbReverseTcp() -> Void {
+        let adbPath = "/Users/\(NSUserName())/Library/Android/sdk/platform-tools/./adb"
+        
+        let reverTcpShell = "\(adbPath) reverse tcp:8081 tcp:8081"
+        let result = runScript(script: reverTcpShell)
+        print("reverse shell result - \(result)")
+    }
+}
+

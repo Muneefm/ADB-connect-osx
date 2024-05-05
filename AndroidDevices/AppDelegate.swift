@@ -31,18 +31,18 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
     func closeApp() {
         print("Close app")
     }
-    
+
     lazy var statusMenu: NSMenu = {
-        
+
         let rightClickMenu = NSMenu()
         rightClickMenu.addItem(NSMenuItem(title: "Close", action: #selector(AppDelegate.onClick(_:)), keyEquivalent: ""))
         return rightClickMenu
     }()
-    
+
     @objc func showContextMenu(_ sender: Any) {
-        statusItem.popUpMenu(constructMenu())
+      statusItem.popUpMenu(constructMenu())
     }
-    
+
      func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         return true
     }
@@ -68,7 +68,13 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
 
         let connectedDeviceList = Helper.getConnectedDevices()
-        menu.addItem(NSMenuItem(title: "Connected Devices:", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: ""))
+        var deviceCount = 0;
+        for device in (connectedDeviceList)! {
+            if(device != "" && !device.contains("List of devices attached")) {
+                deviceCount += 1
+            }
+        }
+        menu.addItem(NSMenuItem(title: "Connected Devices: \(deviceCount)", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
         
         /*
@@ -99,25 +105,45 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
                 clipboardPaste.representedObject = device
                 sendDeeplinkMenu.representedObject = device
                 subMenu.addItem(installApkMenu)
-                subMenu.addItem(sendDeeplinkMenu)
                 subMenu.addItem(clipboardPaste)
-
+                subMenu.addItem(sendDeeplinkMenu)
+                let recentTitle = NSMenuItem(title: "Recent Deeplinks", action: nil, keyEquivalent: "")
+                recentTitle.isEnabled = false
+                recentTitle.attributedTitle = NSAttributedString(string: "Recent Deeplinks: ", attributes: [NSAttributedString.Key.font: NSFont.systemFont(ofSize: 14, weight: .bold)])
+                subMenu.addItem(recentTitle)
+                let recentDeeplinks = retrieveRecentDeeplinks()
+                   for (index, deeplink) in recentDeeplinks.enumerated()  {
+                       let sendDeeplinkMenu = NSMenuItem(title: deeplink, action: #selector(AppDelegate.sendRecentDeeplink(_:)), keyEquivalent: "\(index)")
+                       sendDeeplinkMenu.representedObject = deeplink
+                       subMenu.addItem(sendDeeplinkMenu)
+                   }
                 menu.setSubmenu(subMenu, for: menuItem)
                 menu.addItem(NSMenuItem.separator())
             }
         }
-        /* Menu to Connect to device over wifi */
-        menu.addItem(NSMenuItem(title: "ADB over wifi", action: #selector(AppDelegate.actionConnectWifi(_:)), keyEquivalent: "W"))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
+  
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem.separator())
         menu.addItem(menuQRimage)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
+        let reactNativeMenu = NSMenuItem(title: "React Native", action: nil , keyEquivalent: "")
+        menu.addItem(reactNativeMenu)
+        let rnSubMenu = NSMenu()
+        let reactNativeReverseTcp = NSMenuItem(title: "Reverse tcp:8081", action: #selector(AppDelegate.reactNativeReverseTcp(_:)) , keyEquivalent: "r")
+        rnSubMenu.addItem(reactNativeReverseTcp)
+        menu.setSubmenu(rnSubMenu, for: reactNativeMenu)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Service", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         return menu
         // statusItem.menu = menu
        }
-   
+
     @objc func disconnectADBAction(_ sender: NSMenuItem?) {
         let originalString = sender?.representedObject as! String;
         // TODO Call helper instead
@@ -157,6 +183,14 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         if let read = NSPasteboard.general.string(forType: .string) {
           let lastCopy = read
             Helper.handleDeeplink(value: lastCopy)
+            saveDeeplinkToRecents(deeplink: lastCopy)
+        }
+    }
+    
+    @objc func sendRecentDeeplink(_ sender: NSMenuItem?) {
+        if let customParam = sender?.representedObject as? String
+        {
+            Helper.handleDeeplink(value: customParam)
         }
     }
     
@@ -173,6 +207,7 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
         dialog.canCreateDirectories    = true;
         dialog.allowsMultipleSelection = false;
         dialog.allowedFileTypes        = ["apk"];
+        NSApp.activate(ignoringOtherApps: true)
 
         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             let result = dialog.url // Pathname of the file
@@ -201,6 +236,11 @@ class AppDelegate: NSMenuItem, NSApplicationDelegate {
             return true
         }
         return false
+    }
+    
+    
+    @objc func reactNativeReverseTcp(_ sender: NSMenuItem?) {
+        ReactNativeHelper.adbReverseTcp();
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
